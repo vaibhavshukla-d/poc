@@ -36,21 +36,50 @@ export default function BullionRate() {
     });
   }
 
-  const handleViewClick =async (e: React.FormEvent<HTMLFormElement>)  => {
-
-    e.preventDefault(); 
-    const response = await fetch(`http://localhost:8080/GetBullionRate?bankId=61&effectiveDate=${form.effectiveDate}&operatorId=${form.operatorId}`);
-    const data = await response.json();
-
-    setBullionData(data[1].map((item: { BullionID: any; Name: any; Purity: any; MaxRate: any; BullionRate: any; MinRate: any; }) => ({
-      BullionID: item.BullionID,
-      Name: item.Name,
-      Purity: item.Purity,
-      MaxRate: item.MaxRate,
-      BullionRate: item.BullionRate, 
-      MinRate: item.MinRate
-    })));
-  }
+  const handleViewClick = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  
+    const requestOptions: RequestInit = {
+      method: 'POST', // Use POST method
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        bankId: 61,
+        effectiveDate: form.effectiveDate,
+        operatorId: form.operatorId
+      }) // Send data in the request body
+    };
+  
+    try {
+      const response = await fetch('http://localhost:8080/GetBullionRate', requestOptions);
+      
+      if (response.ok) {
+        const data = await response.json();
+        
+        setBullionData(
+          data[1].map((item: {
+            BullionID: any;
+            Name: any;
+            Purity: any;
+            MaxRate: any;
+            BullionRate: any;
+            MinRate: any;
+          }) => ({
+            BullionID: item.BullionID,
+            Name: item.Name,
+            Purity: item.Purity,
+            MaxRate: item.MaxRate,
+            BullionRate: item.BullionRate,
+            MinRate: item.MinRate
+          }))
+        );
+      } else {
+        console.error('Error fetching data:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  
 
   const handleSaveClick = async () => {
     if (isTableModified) {
