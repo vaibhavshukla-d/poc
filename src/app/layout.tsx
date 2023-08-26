@@ -4,7 +4,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import NavbarLayout from "./layout/navbar/page";
 import { usePathname } from "next/navigation";
-import { Toaster } from "@/components/ui/toaster";
+
+import { ToastContainer } from "react-toastify";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +27,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <div>{showNavbarLayout && <NavbarLayout />}</div>
         {children}
-        <Toaster />
+        <ToastContainer />
       </body>
     </html>
   );

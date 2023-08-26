@@ -3,26 +3,36 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { useToast } from "@/components/ui/use-toast";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
-  const { toast } = useToast();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission, e.g., send login request
-    console.log("Username:", username);
-    console.log("Password:", password);
-    router.push(
-      username === "Supratick" && password === "Change@123"
-        ? "/modules/BullionRate"
-        : ""
-    );
-    if (!(username === "Supratick" && password === "Change@123")) {
-      console.log("wrong pass");
+
+    if (username === "Supratick" && password === "Change@123") {
+      router.push("/modules/BullionRate");
+      toast.success("Login Success", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+      });
+    } else {
+      toast.error("Invalid username or password", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+      });
     }
   };
 
@@ -64,18 +74,8 @@ const LoginForm = () => {
         >
           Submit
         </Button>
-
-        <Button
-          variant="outline"
-          onClick={() => {
-            toast({
-              description: "Your message has been sent.",
-            });
-          }}
-        >
-          Show Toast
-        </Button>
       </form>
+      <ToastContainer />
     </div>
   );
 };
