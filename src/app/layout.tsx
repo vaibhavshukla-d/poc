@@ -6,6 +6,7 @@ import NavbarLayout from "./layout/navbar/page";
 import { usePathname } from "next/navigation";
 
 import { ToastContainer } from "react-toastify";
+import DockBar from "./layout/Dock/page";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <div>{showNavbarLayout && <NavbarLayout />}</div>
         {children}
+        <DockBar />
         <ToastContainer />
       </body>
     </html>
