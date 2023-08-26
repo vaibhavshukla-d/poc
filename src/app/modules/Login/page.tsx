@@ -3,11 +3,13 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { useToast } from "@/components/ui/use-toast";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+  const { toast } = useToast();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,10 +17,13 @@ const LoginForm = () => {
     console.log("Username:", username);
     console.log("Password:", password);
     router.push(
-      username === "validUsername" && password === "validPassword"
-        ? "BullionRate"
-        : "/"
+      username === "Supratick" && password === "Change@123"
+        ? "/modules/BullionRate"
+        : ""
     );
+    if (!(username === "Supratick" && password === "Change@123")) {
+      console.log("wrong pass");
+    }
   };
 
   return (
@@ -58,6 +63,17 @@ const LoginForm = () => {
           className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition duration-300"
         >
           Submit
+        </Button>
+
+        <Button
+          variant="outline"
+          onClick={() => {
+            toast({
+              description: "Your message has been sent.",
+            });
+          }}
+        >
+          Show Toast
         </Button>
       </form>
     </div>
