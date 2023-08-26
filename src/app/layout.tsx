@@ -1,7 +1,11 @@
+"use client";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import NavbarLayout from "./layout/navbar/page";
+import { usePathname } from "next/navigation";
+
+import { ToastContainer } from "react-toastify";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,13 +19,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+  const showNavbarLayout = pathname != "/";
+  console.log(pathname);
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div>
-          <NavbarLayout />
-        </div>
+        <div>{showNavbarLayout && <NavbarLayout />}</div>
         {children}
+        <ToastContainer />
       </body>
     </html>
   );
