@@ -1,12 +1,15 @@
 "use client";
 import React from "react";
-import CalendarComponent from "../Calendar.tsx/page";
+import CalendarComponent from "../Calendar/page";
 
 const Home = () => {
-  var names = new Array("Mary", "Tom", "Jack", "Jill");
+
   return (
-    <div>
-      <CalendarComponent />
+    // <div>
+    //   <CalendarComponent />
+    // </div>
+    <div className="flex">
+        
     </div>
   );
 };

@@ -31,7 +31,7 @@ const LoginForm = () => {
       // Store the access token in local storage or any state management solution
       localStorage.setItem("access_token", access_token);
 
-      router.push("/modules/BullionRate");
+      router.push("/modules/Home");
       toast.success("Login Success", {
         position: "top-right",
         autoClose: 3000,

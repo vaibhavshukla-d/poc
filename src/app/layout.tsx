@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 
 import { ToastContainer } from "react-toastify";
 import DockBar from "./layout/Dock/page";
-import CalendarComponent from "./modules/Calendar.tsx/page";
+import CalendarComponent from "./modules/Calendar/page";
 
 const inter = Inter({ subsets: ["latin"] });
 
