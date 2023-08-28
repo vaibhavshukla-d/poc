@@ -38,10 +38,25 @@ export default function BullionRate() {
 
   const handleViewClick = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
+
+    console.log(JSON.stringify({
+      bankId: 61,
+      effectiveDate: form.effectiveDate,
+      operatorId: form.operatorId
+    }))
+
+    console.log('Request Headers:', {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+      'Access-Control-Allow-Origin': 'http://localhost:3000', // Allow CORS
+    });
+    
     const requestOptions: RequestInit = {
       method: 'POST', // Use POST method
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' ,
+                  'Authorization': `Bearer ${localStorage.getItem('access_token')}` ,
+      'Access-Control-Allow-Origin': 'http://localhost:3000', // Allow CORS
+    },
       body: JSON.stringify({
         bankId: 61,
         effectiveDate: form.effectiveDate,
@@ -50,7 +65,7 @@ export default function BullionRate() {
     };
   
     try {
-      const response = await fetch('http://localhost:8080/GetBullionRate', requestOptions);
+      const response = await fetch('http://localhost:8080/api/v1/auth/GetBullionRate', requestOptions);
       
       if (response.ok) {
         const data = await response.json();
@@ -103,10 +118,11 @@ export default function BullionRate() {
       };
   
       try {
-        const response = await fetch("http://localhost:8080/AddEditBullionRate", {
+        const response = await fetch("http://localhost:8080/api/v1/auth/AddEditBullionRate", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
           },
           body: JSON.stringify(requestBody),
         });
