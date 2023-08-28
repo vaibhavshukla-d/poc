@@ -4,9 +4,7 @@ import { motion } from "framer-motion"; // Import the framer-motion library
 
 const Dockbar = () => {
   const apps = [
-    { name: "Finder", icon: "fas fa-folder" },
-    { name: "Safari", icon: "fab fa-safari" },
-    { name: "Mail", icon: "fas fa-envelope" },
+    { name: "@Craft Silicon", icon: "fas fa-folder" },
     // Add more apps as needed
   ];
 
@@ -15,7 +13,7 @@ const Dockbar = () => {
       {apps.map((app, index) => (
         <motion.div
           key={index}
-          className="flex flex-col items-center text-sky-200 hover:text-white transition duration-600"
+          className="flex flex-col items-center text-white"
           whileHover={{ scale: 1.5 }} // Add the animation property
         >
           <i className={`${app.icon} text-2xl mb-1`} />

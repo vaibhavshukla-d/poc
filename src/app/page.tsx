@@ -9,7 +9,6 @@ export default function Home() {
     <main>
       <div>
         <LoginForm />
-        {/* <BullionForm /> */}
       </div>
     </main>
   );

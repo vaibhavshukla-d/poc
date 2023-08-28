@@ -15,7 +15,7 @@ const LoginForm = () => {
     e.preventDefault();
 
     if (username === "Supratick" && password === "Change@123") {
-      router.push("/modules/BullionRate");
+      router.push("/modules/Home");
       toast.success("Login Success", {
         position: "top-right",
         autoClose: 3000,
